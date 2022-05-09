@@ -18,9 +18,10 @@ RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
 
 ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
 
-COPY requirements.txt .
+COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY . .
+RUN useradd -m mltb
+USER mltb
 
 CMD ["bash", "start.sh"]
